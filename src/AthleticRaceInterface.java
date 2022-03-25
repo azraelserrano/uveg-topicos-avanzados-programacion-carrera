@@ -1,24 +1,26 @@
-
-import javax.swing.JOptionPane;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author EDUCACIÓN
+ * @author UVEG
  */
 public class AthleticRaceInterface extends javax.swing.JFrame {
 
-  Runner[] runner;
+  private Runner runner;
+  private ThreadRunner thread;
 
   /**
    * Creates new form AthleticRaceInterface
    */
   public AthleticRaceInterface() {
     initComponents();
-    runner = new Runner[5];
+    runner = new Runner();
+    thread = new ThreadRunner();
   }
 
   /**
@@ -128,23 +130,24 @@ public class AthleticRaceInterface extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestartActionPerformed
-      JOptionPane.showMessageDialog(null, "Este boton aun no sirve");
-    }//GEN-LAST:event_btnRestartActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-      if (runner.length > 5) {
-        JOptionPane.showMessageDialog(null, "No hay cupo o no hay dato");
-      } else if(txbName.equals("")) {
-        JOptionPane.showMessageDialog(null, "El campo esta vacio");
-      } else {
-        JOptionPane.showMessageDialog(null, "Dato agregado!");
-      }
-    }//GEN-LAST:event_btnRegisterActionPerformed
+  private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    if (runner.getArrayLength() < 5) {
+      runner.setName(txbName.getText());
+      runner.setArray();
+      lblNamesList.setText(runner.getArray());
+    } else {
+      JOptionPane.showMessageDialog(null, "No se pueden ingresar más nombres a la lista");
+    }
+  }//GEN-LAST:event_btnRegisterActionPerformed
 
   private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
     JOptionPane.showMessageDialog(null, "Este boton tampoco sirve");
+    this.thread.start();
   }//GEN-LAST:event_btnStartActionPerformed
+
+  private void btnRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestartActionPerformed
+    JOptionPane.showMessageDialog(null, "Este boton aun no sirve");
+  }//GEN-LAST:event_btnRestartActionPerformed
 
   private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
     JOptionPane.showMessageDialog(null, "Este boton menos sirve");
@@ -175,6 +178,9 @@ public class AthleticRaceInterface extends javax.swing.JFrame {
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
       java.util.logging.Logger.getLogger(AthleticRaceInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
 
     /* Create and display the form */
