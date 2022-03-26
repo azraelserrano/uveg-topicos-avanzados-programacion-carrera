@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+
 /**
  *
  * @author UVEG
@@ -12,6 +13,8 @@ public class Runner {
   private String name;
   private int speed;
   private final String[] array;
+  
+  private ThreadRunner thread;
 
   public Runner() {
     array = new String[5];
@@ -47,7 +50,7 @@ public class Runner {
     String text = "";
     for (int i = 0; i < array.length; i++) {
       if (this.array[i] != null) {
-        text += (i + 1) + ": " + this.array[i] + "\n";
+        text += (i + 1) + " - " + this.array[i] + "\n";
       } else {
         break;
       }
@@ -63,5 +66,16 @@ public class Runner {
         break;
       }
     }
+  }
+  
+  public String startThread() {
+    String message = "";
+    for (int i = 0; i < array.length; i++) {
+      setSpeed();
+      thread = new ThreadRunner(this.array[i],getSpeed());
+      message += (i+1) + " - " +this.array[i]+"- Tiempo: "+getSpeed()+" segundos\n";
+    }
+    thread.start();
+    return message;
   }
 }

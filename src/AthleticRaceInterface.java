@@ -3,16 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author UVEG
  */
-public class AthleticRaceInterface extends javax.swing.JFrame {
+public class AthleticRaceInterface extends JFrame {
 
   private Runner runner;
-  private ThreadRunner thread;
 
   /**
    * Creates new form AthleticRaceInterface
@@ -20,7 +22,6 @@ public class AthleticRaceInterface extends javax.swing.JFrame {
   public AthleticRaceInterface() {
     initComponents();
     runner = new Runner();
-    thread = new ThreadRunner();
   }
 
   /**
@@ -141,16 +142,16 @@ public class AthleticRaceInterface extends javax.swing.JFrame {
   }//GEN-LAST:event_btnRegisterActionPerformed
 
   private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-    JOptionPane.showMessageDialog(null, "Este boton tampoco sirve");
-    this.thread.start();
+    lblResult.setText(runner.startThread());
   }//GEN-LAST:event_btnStartActionPerformed
 
   private void btnRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestartActionPerformed
-    JOptionPane.showMessageDialog(null, "Este boton aun no sirve");
+    lblResult.setText(runner.startThread());
   }//GEN-LAST:event_btnRestartActionPerformed
 
   private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
-    JOptionPane.showMessageDialog(null, "Este boton menos sirve");
+    JOptionPane.showMessageDialog(null, "¡Buen día!");
+    this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
   }//GEN-LAST:event_btnFinishActionPerformed
 
   /**
