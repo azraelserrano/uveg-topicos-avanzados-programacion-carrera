@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +20,7 @@ public class AthleticRaceInterface extends JFrame {
    */
   public AthleticRaceInterface() {
     initComponents();
+    TextPrompt placeholder = new TextPrompt("ingresa un nombre", txbName);
     runner = new Runner();
   }
 
@@ -81,8 +81,6 @@ public class AthleticRaceInterface extends JFrame {
       }
     });
 
-    txbName.setText("Ingrese nombre");
-
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -133,9 +131,13 @@ public class AthleticRaceInterface extends JFrame {
 
   private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
     if (runner.getArrayLength() < 5) {
-      runner.setName(txbName.getText());
-      runner.setArray();
-      lblNamesList.setText(runner.getArray());
+      if (txbName.getText().length() == 0) {
+        JOptionPane.showMessageDialog(null, "No has ingresado ningun nombre");
+      } else {
+        runner.setName(txbName.getText());
+        runner.setArray();
+        lblNamesList.setText(runner.getArray());
+      }
     } else {
       JOptionPane.showMessageDialog(null, "No se pueden ingresar más nombres a la lista");
     }
